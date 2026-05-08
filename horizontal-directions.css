@@ -1,0 +1,142 @@
+/* Scroll-driven horizontal section for "Наши базисные направления". */
+.directions-section.is-horizontal {
+  width: min(100%, var(--container));
+  min-height: var(--directions-scroll-height, auto);
+  margin: 0 auto;
+  padding: 0;
+}
+
+.directions-section.is-horizontal .directions-stage {
+  position: sticky;
+  top: var(--directions-sticky-top, 88px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: calc(100vh - var(--directions-sticky-top, 88px));
+  min-height: 640px;
+  max-height: 920px;
+  overflow: hidden;
+  padding: 62px 34px 42px;
+}
+
+.directions-section.is-horizontal .section-heading {
+  flex: 0 0 auto;
+  margin-bottom: 34px;
+}
+
+.directions-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 0 20px;
+}
+
+.directions-viewport::before,
+.directions-viewport::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 20px;
+  z-index: 2;
+  width: 86px;
+  pointer-events: none;
+}
+
+.directions-viewport::before {
+  left: 0;
+  background: linear-gradient(90deg, #f8f5ee 0%, rgba(248, 245, 238, 0) 100%);
+  opacity: var(--directions-left-fade, 0);
+}
+
+.directions-viewport::after {
+  right: 0;
+  background: linear-gradient(270deg, #f8f5ee 0%, rgba(248, 245, 238, 0) 100%);
+  opacity: var(--directions-right-fade, 1);
+}
+
+.directions-section.is-horizontal .directions-track {
+  display: flex !important;
+  grid-template-columns: none !important;
+  gap: 18px;
+  width: max-content;
+  transform: translate3d(var(--directions-x, 0px), 0, 0);
+  will-change: transform;
+}
+
+.directions-section.is-horizontal .direction-card {
+  flex: 0 0 clamp(286px, 24vw, 358px);
+  width: clamp(286px, 24vw, 358px);
+  min-height: 515px;
+}
+
+.directions-section.is-horizontal .directions-progress {
+  position: relative;
+  flex: 0 0 auto;
+  width: min(420px, 54vw);
+  height: 2px;
+  margin: 18px auto 0;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(23, 63, 43, 0.12);
+}
+
+.directions-section.is-horizontal .directions-progress span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--green-800);
+  transform: scaleX(var(--directions-progress, 0));
+  transform-origin: left center;
+}
+
+@media (max-width: 1240px) {
+  .directions-section.is-horizontal .directions-stage {
+    --directions-sticky-top: 78px;
+    min-height: 620px;
+  }
+
+  .directions-section.is-horizontal .direction-card {
+    flex-basis: clamp(292px, 34vw, 350px);
+    width: clamp(292px, 34vw, 350px);
+  }
+}
+
+@media (max-width: 900px) {
+  .directions-section.is-horizontal .directions-stage {
+    --directions-sticky-top: 72px;
+    min-height: 660px;
+    padding: 54px 18px 34px;
+  }
+
+  .directions-viewport::before,
+  .directions-viewport::after {
+    width: 44px;
+  }
+
+  .directions-section.is-horizontal .direction-card {
+    flex-basis: min(78vw, 345px);
+    width: min(78vw, 345px);
+  }
+}
+
+@media (max-width: 620px) {
+  .directions-section.is-horizontal .directions-stage {
+    min-height: 650px;
+    padding-top: 46px;
+  }
+
+  .directions-section.is-horizontal .section-heading {
+    margin-bottom: 28px;
+  }
+
+  .directions-section.is-horizontal .direction-card {
+    flex-basis: min(84vw, 320px);
+    width: min(84vw, 320px);
+    min-height: auto;
+  }
+
+  .directions-section.is-horizontal .directions-progress {
+    width: min(260px, 64vw);
+  }
+}
