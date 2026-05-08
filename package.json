@@ -1,0 +1,17 @@
+{
+  "name": "lab-movement-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Landing page for Лаборатория профилактики и качества движения",
+  "scripts": {
+    "dev": "python3 -m http.server 5173",
+    "dev:win": "py -m http.server 5173",
+    "check": "node scripts/check-local-assets.js"
+  },
+  "keywords": [
+    "static-site",
+    "clinic",
+    "movement",
+    "prevention"
+  ]
+}
