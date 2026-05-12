@@ -26,6 +26,9 @@ const rewriteInternalLinksToPages = () => {
 
   const profileLink = document.querySelector('.profile-link');
   if (profileLink) profileLink.setAttribute('href', 'account.html');
+
+  const videoLink = document.querySelector('.video-link');
+  if (videoLink) videoLink.setAttribute('href', 'video.html');
 };
 
 const makeDirectionCardsClickable = () => {
