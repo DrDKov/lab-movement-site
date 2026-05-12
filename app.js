@@ -1,6 +1,69 @@
 const menuButton = document.querySelector('.menu-toggle');
 const menu = document.querySelector('#main-nav');
 
+const pageRoutes = new Map([
+  ['#top', 'index.html'],
+  ['#about', 'about.html'],
+  ['#directions', 'directions.html'],
+  ['#services', 'services.html'],
+  ['#products', 'products.html'],
+  ['#experts', 'experts.html'],
+  ['#blog', 'blog.html'],
+  ['#contacts', 'contacts.html'],
+  ['#appointment', 'appointment.html'],
+  ['mailto:hello@example.ru?subject=Запись%20на%20приём', 'appointment.html'],
+]);
+
+const rewriteInternalLinksToPages = () => {
+  document.querySelectorAll('a[href]').forEach(link => {
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    if (pageRoutes.has(href)) {
+      link.setAttribute('href', pageRoutes.get(href));
+    }
+  });
+
+  const profileLink = document.querySelector('.profile-link');
+  if (profileLink) profileLink.setAttribute('href', 'account.html');
+};
+
+const makeDirectionCardsClickable = () => {
+  const cardRoutes = [
+    'orthopedics.html',
+    'physical-medicine.html',
+    'sports.html',
+    'prevention.html',
+    'nutrition.html',
+    'lifestyle.html',
+  ];
+
+  document.querySelectorAll('#directions .direction-card').forEach((card, index) => {
+    const url = cardRoutes[index];
+    if (!url) return;
+
+    card.classList.add('is-clickable');
+    card.setAttribute('role', 'link');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', `${card.querySelector('h3')?.textContent || 'Направление'} — открыть страницу`);
+
+    const openCard = () => {
+      window.location.href = url;
+    };
+
+    card.addEventListener('click', openCard);
+    card.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openCard();
+      }
+    });
+  });
+};
+
+rewriteInternalLinksToPages();
+makeDirectionCardsClickable();
+
 if (menuButton && menu) {
   menuButton.addEventListener('click', () => {
     const isOpen = menu.classList.toggle('is-open');
