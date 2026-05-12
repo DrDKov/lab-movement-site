@@ -69,6 +69,19 @@
   min-height: 515px;
 }
 
+.direction-card.is-clickable {
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.direction-card.is-clickable:hover,
+.direction-card.is-clickable:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(23, 63, 43, 0.28);
+  box-shadow: 0 24px 48px rgba(44, 58, 48, 0.12);
+  outline: none;
+}
+
 .directions-section.is-horizontal .directions-progress {
   position: relative;
   flex: 0 0 auto;
